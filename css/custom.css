@@ -14,7 +14,7 @@ div.adso {
 
 div.adso:hover {
     cursor: pointer;
-    animation: 0.5s anim ease-in infinite;
+    animation: 1s anim ease-in infinite;
 }
 
 @keyframes anim {
