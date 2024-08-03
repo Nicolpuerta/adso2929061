@@ -114,11 +114,11 @@ nav{
                 font-weight: 200;
             }
             h2{
-                font-size: 2rem;
-                font-weight: 500;
-                border-bottom: 3px solid;
-
+                justify-content: center;
+                text-align: center;
+                
             }
+
             h3{
                 border-radius: 20px;
                 background-color: var(--color-1);
@@ -278,6 +278,7 @@ body.css {
             font-weight: 500;
             span{
                 background-color: #1900ff;
+                justify-content: center;
             }
         }
     }
