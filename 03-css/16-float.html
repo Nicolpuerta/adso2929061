@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>16- Float</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+
+        h3 {
+          color: rgb(255, 255, 255);
+          text-shadow: -1px -1px 1px black,
+                        1px 1px 1px black,
+                        0px 0.1px 0.2px black;
+          }
+
+          main section article p {
+            font-size: 1.4rem;
+            text-align: justify;
+        }
+
+        body main section article img.mario {
+            float: left;
+            width: 180px;
+            border: white;
+            background-color: none;
+
+        }
+        
+        main section article p + p {
+            clear: left;
+        }
+                
+    </style>
 </head>
 <body class="css">
     <nav>
@@ -17,9 +44,18 @@
             <h1>16- Float</h1>
             <h2>Pushes the element to either the left or right side</h2>
         </header>
-       <section>
-          
-       </section>
+        <section>
+            <article>
+                <h4>Super Mario Bross</h4>
+                <img class="mario" src="images/mario.png" alt="Mario">
+                <p>
+                    Super mario bross, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quidem facilis tempora. Quo consequuntur aliquam, perferendis voluptates amet repellendus culpa? Dolor enim sapiente dolores aperiam? Rerum quasi consectetur tenetur aliquid.
+                </p>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse nulla repudiandae eaque reiciendis. Quam, earum et, ut non repellendus necessitatibus quisquam magnam sed minima natus ad vero vitae ipsa nemo.
+                </p>
+            </article>
+        </section>
     </main>
 </body>
 </html>
