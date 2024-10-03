@@ -70,7 +70,7 @@
             align-items: center;
             justify-content: center;
             background-color: #fff;
-            width: 824px ;
+            width: 920px ;
             margin: 0 auto;
             margin-bottom: 1rem;
         }
@@ -92,7 +92,7 @@
             align-items: center;
             justify-content: center;
             background-color: #0009;
-            width: 824px ;
+            width: 875px ;
             margin: 0 auto;
             margin-bottom: 1rem;
             padding: 20px;
@@ -115,6 +115,55 @@
             background-color: #f8f6f6f8;
           
         }
+
+        section.primero {
+            background-color: #000;
+            margin: 0 auto;
+            width: 900px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        div.sprite {
+            background-color: white;
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            margin-bottom: 10px 0;
+        }
+
+        div aside {
+            background: url(images/spriteweb.png) no-repeat;
+            width: 20%;
+        }
+
+        div p {
+            width: 50%;
+            text-align: justify;
+            line-height: 1.4rem;
+        }
+        div p:hover {
+            color: #15ca64;
+        }
+
+
+        div aside.primero{
+            background-position: -282px -499px;
+            height: 105px;
+            width: 150px;
+        }
+
+        div aside.segundo {
+            background-position: -88px -210px;
+            height: 153px;
+            width: 100px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -140,6 +189,31 @@
                 <h3>Sprite 03</h3>
             </div>
         </section>
+        <br />
+        <section class="primero">
+            <div class="sprite">
+                <aside class="primero"></aside>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit autem laborum quam odit voluptatibus eligendi dolores quia nostrum labore. Magnam harum earum, fugit numquam esse sit laboriosam iure voluptas reprehenderit odio nam autem inventore quam veritatis praesentium aut, maxime accusantium?
+                </p>
+                <aside class="segundo"></aside>
+            </div>
+            <div class="sprite">
+                <aside class="primero"></aside>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, saepe, tempore ut, natus earum tempora officiis reprehenderit hic perferendis voluptatibus voluptatem obcaecati ullam voluptates in aliquam provident optio maxime ipsa officia nihil corrupti illum doloribus. Repudiandae eius labore odit? Molestiae?
+                </p>
+                <aside class="segundo"></aside>
+            </div>
+            <div class="sprite">
+                <aside class="primero"></aside>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic maxime voluptatum blanditiis quam inventore aspernatur atque ducimus maiores ratione eos autem quod est nemo repellendus, amet voluptates officiis nihil commodi dolorem debitis. Reprehenderit harum nulla eos ut aliquid itaque incidunt.
+                </p>
+                <aside class="segundo"></aside>
+            </div>
+        </section>
+        <br />
         <footer>
             <figure class="logo"></figure>
             <menu>
