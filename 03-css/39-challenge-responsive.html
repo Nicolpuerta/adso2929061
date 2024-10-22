@@ -16,7 +16,7 @@
         }
 
         main {
-            background-color: #e2b0b8ce;
+            background-color: pink;
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -80,7 +80,7 @@
 
         }
 
-        div:is(:hover) h3{
+        div:is(:hover) h3 {
             background-color: #ffffffab;
 
         }
@@ -96,6 +96,12 @@
             padding: 1rem;
         }
 
+        article div img {
+            object-fit: cover;
+            width: 200px;
+            height: 200px;
+        }
+
         @media (max-width: 860px) {
             nav {
                 width: 500px;
@@ -108,16 +114,19 @@
 
             main {
                 width: 500px;
+                height: 700px;
             }
 
             article {
                 width: 500px;
             }
+
+
         }
 
         @media (max-width: 480px) {
             nav {
-                width: 500px;
+                width: 400px;
             }
 
             nav div {
@@ -127,11 +136,24 @@
 
             main {
                 width: 400px;
+                height: 1000px;
             }
 
             article {
                 flex-direction: column;
                 width: 400px;
+            }
+
+            .img {
+                height: 200px;
+                width: 200px;
+                display: grid;
+            }
+
+            img {
+                height: 200px;
+                width: 200px;
+                display: grid;
             }
         }
     </style>
@@ -147,10 +169,10 @@
         <div>
             <h3>Rosita fresita</h3>
             <img src="/03-css/images/rosa2.jpg">
-            
+
         </div>
         <div>
-            <h3>Dulce de limon</h3>
+            <h3>Dulce de limón</h3>
             <img src="/03-css/images/amarilla.jpg">
         </div>
         <div>
@@ -176,7 +198,48 @@
 
         </div>
     </article>
+    <article>
+        <div class="img">
+            <img src="/03-css/images/mora.jpg">
+        </div>
+        <div class="txt">
+            <h2>Morita</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, necessitatibus. Nesciunt temporibus id
+                eveniet nihil quae illum quidem, laudantium, nobis cumque sit necessitatibus porro, ratione sequi!
+                Numquam at aliquid veritatis mollitia, commodi sed ut laboriosam officiis nemo dolores, quae ullam
+                perspiciatis saepe sunt recusandae consectetur iste quidem eaque illum nobis impedit sint incidunt.
+                Ipsum ipsam ratione maxime voluptates a numquam.</p>
 
+        </div>
+    </article>
+    <article>
+        <div class="img">
+            <img src="/03-css/images/amarilla.jpg">
+        </div>
+        <div class="txt">
+            <h2>Dulce de limón</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, necessitatibus. Nesciunt temporibus id
+                eveniet nihil quae illum quidem, laudantium, nobis cumque sit necessitatibus porro, ratione sequi!
+                Numquam at aliquid veritatis mollitia, commodi sed ut laboriosam officiis nemo dolores, quae ullam
+                perspiciatis saepe sunt recusandae consectetur iste quidem eaque illum nobis impedit sint incidunt.
+                Ipsum ipsam ratione maxime voluptates a numquam.</p>
+
+        </div>
+    </article>
+    <article>
+        <div class="img">
+            <img src="/03-css/images/negra.jpg">
+        </div>
+        <div class="txt">
+            <h2>Naranjita</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, necessitatibus. Nesciunt temporibus id
+                eveniet nihil quae illum quidem, laudantium, nobis cumque sit necessitatibus porro, ratione sequi!
+                Numquam at aliquid veritatis mollitia, commodi sed ut laboriosam officiis nemo dolores, quae ullam
+                perspiciatis saepe sunt recusandae consectetur iste quidem eaque illum nobis impedit sint incidunt.
+                Ipsum ipsam ratione maxime voluptates a numquam.</p>
+
+        </div>
+    </article>
 </body>
 
 </html>
