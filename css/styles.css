@@ -85,9 +85,11 @@ html {
 /*G E N E R A L*/
 /*- - - - - - - - - -*/
 body {
+    align-items: center;
     color: var(--color-2);
     font-family: var(--font-fm);
     display: flex;
+    
     justify-content: center;
     flex-wrap: wrap;
     min-height: 100vh;
