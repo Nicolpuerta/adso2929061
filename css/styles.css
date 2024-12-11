@@ -2,10 +2,7 @@
 /*F O N T S*/
 /*- - - - - - - - - -*/
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto: wght@300;400;700&family=Sombras+Into+Light&display=swap');
-@font-face {
-    font-family: ;
-    src: url();
-}
+
 /*- - - - - - - - - -*/
 /*R E S E T*/
 /*- - - - - - - - - -*/
@@ -104,7 +101,7 @@ body {
 
         a:is(:link, :visited) {
             border-radius: 4px;
-            background-color: black;
+            background-color: rgb(10, 10, 10);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -228,7 +225,7 @@ body {
             }
 
             p {
-               /* color: #174fe7; */
+                color: #000; 
                 font-size: 1.4rem;
             }
 
