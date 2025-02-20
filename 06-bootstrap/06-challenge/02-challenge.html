@@ -3,25 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01- Portfolio</title>
+    <title>02- Portfolio</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../css/styles.css">  
-    <link rel="stylesheet" href="../../css/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+
+  
+   
 </head>
-<body class="bootstrap">
-    <nav>
-        <a href="../index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#fafafa" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-        </a>
-     </nav>
-    <main>
-        <header>
-            <h1>challenge</h1>
-            <h2>Personal Portfolio</h2>
-        </header>
-        <section class="content">
-        
-        </section>
-    </main>
+<body>
+  <!-- 01- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom">
+        <div class="container-fluid" bis_skin_checked="1">
+          <a class="navbar-brand fs-5" href="#">
+            <img src="images/navbar-icon.svg.svg" width="60px" alt="">
+            Nicol Dayana Puerta 
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse" bis_skin_checked="1">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+              </li>    
+              <li class="nav-item">
+                <a class="nav-link" href="#">Portfolio</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main class="container-fluid">
+        <!-- 02- Hero -->
+         <div class="hero row row-cols-md-2 row-cols-1" >
+            <div class="col d-flex flex-column justify-content-center align-items-start px-5">
+              <h3 class="fs-3">Hello I am</h3>
+              <h2 class="fs-1 fw-bold">Nicol Dayana Puerta</h2>
+              <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quis dolore illo veritatis quibusdam qui, eaque recusandae eos numquam itaque</p>
+              <a href="javascript:;" class="btn bg-custom p-2 px-4">Hire Me</a>
+            </div>
+            <div class="col">
+
+            </div>
+         </div>
+      </main>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
