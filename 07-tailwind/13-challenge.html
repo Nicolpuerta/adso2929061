@@ -16,15 +16,20 @@
                  flex 
                  justify-center 
                  items-center">
-        <section class="welcome 
+        <section id="welcome" class="welcome 
                         w-[357px] 
                         h-[760px]
                         my-4
                         rounded-[23px]
+                        transition-all
+                        ease-in
+                        duration-500
+                        translate-x-[-400%]
+                        target:translate-x-[0px]
                         overflow-hidden
                         bg-[url(images/viñedo.svg)]
                         bg-[white]
-                        relative
+                        absolute
                         bg-top
                         bg-no-repeat">
             <div class="absolute
@@ -65,7 +70,7 @@
                             flex
                             mt-[42px]
                             mx-auto">
-                    <a href="" class="w-[160px]
+                    <a href="#signin" class="w-[160px]
                                   h-[40px]
                                   rounded-s-[80px]
                                   flex
@@ -73,7 +78,7 @@
                                   items-center
                                   text-white
                                   bg-[#9B020E]">Sign In</a>
-                    <a href="" class="w-[160px] 
+                    <a href="#signup" class="w-[160px] 
                                 h-[40px]
                                 flex
                                 justify-center
@@ -85,10 +90,280 @@
                 </div>
             </div>
         </section>
+
         <!-- Screen 02 - Signin -->
-        <section class="signin"></section>
+        <section id="signin" class="welcome 
+                                    w-[357px] 
+                                    h-[760px]
+                                    transition-all
+                                    ease-in
+                                    my-4
+                                    translate-x-[-300%]
+                                    target:translate-x-[0px]
+                                    duration-500
+                                    rounded-[20px]
+                                    overflow-hidden
+                                    bg-[url(images/circulo.svg)]
+                                    bg-[#ffffff]
+                                    absolute
+                                    bg-top
+                                    bg-no-repeat">
+            <a href="#welcome" class="absolute 
+                left-[20px]
+                hover:translate-x-[-6px]
+                transition-all
+                top-[20px]">
+                <img src="images/flecha.svg" alt="Back Welcome">
+            </a>
+
+            <div class="absolute
+                                    rounded-t-[30px]
+                                    bottom-0
+                                    w-full
+                                    h-[500px]
+                                    bg-white">
+
+                <div class="
+                            flex
+                            justify-center
+                            items-center
+                            gap-4
+                            ">
+                    <h2 class="text-[32px]
+                            text-center
+                            text-[#000]
+                            font-[500]
+                            ">Sign In
+                    </h2>
+                </div>
+
+                <form action="" class="mt-10
+                                    flex 
+                                    justify-center
+                                    items-center
+                                    flex-col 
+                                    gap-2">
+                    <label class="flex 
+                                gap-1 
+                                text-[#050505]
+                                text-[16px]
+                                font-[400]
+                                w-[320px]
+                                items-center">
+                        <img src="images/persona.svg" alt="Email">
+                        E-mail:
+                    </label>
+                    <input class="border-[2px]
+                                border-[#000000]
+                                text-[#5a5555]
+                                w-[320px]
+                                outline-none
+                                indent-4
+                                h-[55px]
+                                rounded-[25px]" type="text">
+                    <label class="flex 
+                                gap-1 
+                                text-[#000000]
+                                text-[16px]
+                                font-[400]
+                                w-[320px]
+                                items-center">
+                        <img src="images/candado.svg" alt="Password">
+                        Password:
+                    </label>
+                    <input class="border-[2px]
+                                border-[#000]
+                                text-[#5a5555]
+                                w-[320px]
+                                outline-none
+                                indent-4
+                                h-[55px]
+                                rounded-[25px]" type="password">
+
+                    <button class="w-[320px]
+                                    mt-[10px]
+                                    cursor-pointer
+                                    transition-all
+                                    hover:scale-[1.05]
+                                text-white
+                                    rounded-[25px]
+                                    text-[16px]
+                                    font-[400]
+                                    h-[55px]
+                                bg-[#9B020E]">
+                        Sign In
+                    </button>
+
+                </form>
+                        <h1 class="
+                        text-end
+                        justify-end
+                        items-end
+                        text-[#9B020E]
+                        mr-[1rem]
+                        mt-2
+                        ">Forgot Password?</h1>
+
+                <div class="w-[100%]
+                flex
+                items-center
+                justify-center
+                mt-[2rem]
+                text-center">
+                    <h1 class="text-[16px]
+                    text-center
+                    flex
+                    text-[#000]
+                    font-[300]">Don't have one?</h1>
+                    <a href="#signup" class="
+                    flex
+                    ml-[10px]
+                    justify-center
+                    font-[300]
+                    text-[#9B020E]
+                    ">
+                        Create one
+                    </a>
+                </div>
+
+        </section>
         <!-- Screen 03 - Signup -->
-        <section class="signup"></section>
+        <section id="signup" class="signup
+                                    w-[357px] 
+                                    h-[760px]
+                                    transition-all
+                                    ease-in
+                                    my-4
+                                    translate-x-[-300%]
+                                    target:translate-x-[0px]
+                                    duration-500
+                                    rounded-[20px]
+                                    overflow-hidden
+                                    bg-[url(images/circulo.svg)]
+                                    bg-[#ffffff]
+                                    absolute
+                                    bg-top
+                                    bg-no-repeat">
+
+            <a href="#welcome" class="absolute 
+                                    left-[20px]
+                                    hover:translate-x-[-6px]
+                                    transition-all
+                                    top-[20px]">
+                <img src="images/flecha.svg" alt="Back Welcome">
+            </a>
+            <div class="absolute
+                        rounded-t-[30px]
+                        bottom-0
+                        w-full
+                        h-[500px]
+                         bg-white
+                         mt-[-30px]">
+
+                <div class="flex
+                        justify-center
+                        items-center
+                        gap-4">
+                    <h2 class="text-[32px]
+                                text-center
+                                text-[#000]
+                                font-[500]">Sign Up</h2>
+                </div>
+
+                <form action="" class="mt-10
+                                    flex 
+                                    justify-center
+                                    items-center
+                                    flex-col 
+                                    gap-2">
+                    <label class="flex 
+                                gap-1 
+                                text-[#000]
+                                text-[16px]
+                                font-[400]
+                                w-[320px]
+                                items-center">
+                        <img src="images/persona.svg" alt="Email">
+                        E-mail:
+                    </label>
+                    <input class="border-[2px]
+                                border-[#000]
+                                text-[#5a5555]
+                                w-[320px]
+                                outline-none
+                                indent-4
+                                h-[55px]
+                                rounded-[25px]" type="text">
+                    <label class="flex 
+                                gap-1 
+                                text-[#000]
+                                text-[16px]
+                                font-[400]
+                                w-[320px]
+                                items-center">
+                        <img src="images/candado.svg" alt="Password">
+                        Password:
+                    </label>
+                    <input class="border-[2px]
+                                border-[#000]
+                                text-[#5a5555]
+                                w-[320px]
+                                outline-none
+                                indent-4
+                                h-[55px]
+                                rounded-[25px]" type="password">
+                    <label class="flex 
+                                gap-1 
+                                text-[#000]
+                                text-[16px]
+                                font-[400]
+                                w-[320px]
+                                items-center">
+                        <img src="images/candado.svg" alt="Password">
+                        Repeat the password:
+                    </label>
+                    <input class="border-[2px]
+                                border-[#000]
+                                text-[#5a5555]
+                                w-[320px]
+                                outline-none
+                                indent-4
+                                h-[55px]
+                                rounded-[25px]" type="password">
+
+                    <button class="w-[320px]
+                                mt-[10px]
+                                cursor-pointer
+                                transition-all
+                                hover:scale-[1.05]
+                            text-white
+                                rounded-[25px]
+                                text-[16px]
+                                font-[400]
+                                 h-[55px]
+                            bg-[#9B020E]">
+                        Sign Up
+                    </button>
+                </form>
+                <div class="w-[100%]
+                            flex
+                            items-center
+                            justify-center
+                            mt-[10px]
+                            text-center">
+                    <h1 class="text-[16px]
+                                text-center
+                                flex
+                                text-[#000]
+                                font-[300]">Already have an account?</h1>
+                    <a href="#signin" class="flex
+                                        ml-[10px]
+                                        justify-center
+                                        font-[300]
+                                        text-[#9B020E]">Sign in
+                    </a>
+                </div>
+        </section>
     </main>
     <script src="js/tailwind.js"></script>
 </body>
