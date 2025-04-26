@@ -11,8 +11,9 @@
 main section {
             background-color: transparent !important;
         }
+        
         figure.vehicle {
-            background: url(images/vehicle/bg-light.svg) no-repeat center;
+            background: url(images/vehicle/dia.svg) no-repeat center;
             border-radius: 40px;
             padding: 0;
             position: relative;
@@ -20,6 +21,7 @@ main section {
             transition: all 0.4s ease-in;
             height: 680px;
             width: 368px;
+
 
             button.btn-mode {
                 background: url(images/vehicle/btn-mode-light.svg) no-repeat center;
@@ -35,6 +37,8 @@ main section {
                     transform: scale(1.1);
                 }
             }
+
+            
 
             h4 {
                 color: #333;
@@ -140,10 +144,9 @@ main section {
                 overflow: hidden;
                 left: 50%;
                 transform: translateX(-50%);
-                top: 306px;
-                border-radius: 20px;
-                height: 230px;
-                width: 340px;
+                top: 302px;
+                height: 240px;
+                width: 350px;
 
                 div {
                     position: absolute;
@@ -151,22 +154,19 @@ main section {
                     width: 680px;
                 }
 
-                div.bg-sky {
-                    background: url(images/vehicle/bg-sky.svg) repeat-x 0 bottom;
+                div.bg-dia {
+                    background: url(images/vehicle/bg-dia.svg) repeat-x 0 bottom;
                     z-index: 1;
                 }
-                div.bg-mountains {
-                    background: url(images/vehicle/bg-mountains.svg) repeat-x 0 bottom;
+                div.bg-noche {
+                    background: url(images/vehicle/bg-noche.svg) repeat-x 0 bottom;
                     z-index: 2;
                 }
-                div.bg-route {
-                    background: url(images/vehicle/bg-route.svg) repeat-x 0 bottom;
-                    z-index: 3;
-                }
+             
 
                 img.car {
                     display: flex;
-                    margin: 174px auto 0 auto;
+                    margin: 154px auto 0 auto;
                     object-fit: contain;
                     height: 54px;
                     width: 164px;
@@ -176,40 +176,67 @@ main section {
             }
         }
 
-        /* Dark Mode */
-        figure.vehicle.dark {
-            background: url(images/vehicle/bg-dark.svg) no-repeat center;
+       /* Dark Mode */
+figure.vehicle.dark {
+    background: url(images/vehicle/noche.svg) no-repeat center;
 
-            button.btn-mode {
-                background: url(images/vehicle/btn-mode-dark.svg) no-repeat center;
-            }
+    button.btn-mode {
+        background: url(images/vehicle/btn-mode-light.svg) no-repeat center;
+    }
 
-            h4 {
-                color: #fff;
-            }
+    h4 {
+        color: #fff;
+    }
 
-            button.btn-prev {
-                background: url(images/vehicle/btn-prev-dark.svg) no-repeat center;
-            }
+    button.btn-prev {
+        background: url(images/vehicle/btn-prev-dark.svg) no-repeat center;
+    }
 
-            button.btn-next {
-                background: url(images/vehicle/btn-next-dark.svg) no-repeat center;
-            }
+    button.btn-next {
+        background: url(images/vehicle/btn-next-dark.svg) no-repeat center;
+    }
 
-            div.landscape {
-                div.bg-sky {
-                    background: url(images/vehicle/bg-sky-dark.svg) repeat-x 0 bottom /contain;
-                    z-index: 1;
-                }
-                div.bg-mountains {
-                    background: url(images/vehicle/bg-mountains-dark.svg) repeat-x 0 bottom /contain;
-                    z-index: 2;
-                }
-                div.bg-route {
-                    background: url(images/vehicle/bg-route-dark.svg) repeat-x 0 bottom /contain;
-                    z-index: 3;
-                }
+    div.landscape {
+        div.bg-dia {
+            display: none; 
+        }
+        div.bg-noche {
+            display: block;
+        }
+    }
+
+    div.methods {
+        button {
+            &.btn-power-on {
+                background: url(images/vehicle/btn-power-on-dark.svg) no-repeat center;
             }
+            &.btn-forward {
+                background: url(images/vehicle/btn-forward-dark.svg) no-repeat center;
+            }
+            &.btn-stop {
+                background: url(images/vehicle/btn-stop-dark.svg) no-repeat center;
+            }
+            &.btn-backward {
+                background: url(images/vehicle/btn-backward-dark.svg) no-repeat center;
+            }
+            &.btn-power-off {
+                background: url(images/vehicle/btn-power-off-dark.svg) no-repeat center;
+            }
+        }
+    }
+}
+
+
+figure.vehicle:not(.dark) {
+    div.landscape {
+        div.bg-dia {
+            display: block; 
+        }
+        div.bg-noche {
+            display: none; 
+        }
+    }
+}
 
             div.methods {
                 button {
@@ -230,7 +257,7 @@ main section {
                     }
                 }
             }
-        }
+        
 
         @keyframes showData {
             0% {
@@ -279,8 +306,8 @@ main section {
                 <button class="btn-prev"></button>
                 <button class="btn-next"></button>
                 <div class="landscape">
-                    <div class="layer bg-sky"></div>
-                    <div class="layer bg-mountains"></div>
+                    <div class="layer bg-noche"></div>
+                    <div class="layer bg-dia"></div>
                     <div class="layer bg-route"></div>
                     <img class="car" src="">
                 </div>
@@ -298,11 +325,11 @@ main section {
         // Object 
         const vehicles = {
             attrs: [
-                { brand: 'Ferrari',    refer: '458 Italia', model: '2020', color: 'Red',   image: 'images/vehicle/car01.webp' },
-                { brand: 'Audi',       refer: 'Q5',         model: '2018', color: 'White', image: 'images/vehicle/car02.webp' },
-                { brand: 'BMW',        refer: 'X7',         model: '2022', color: 'Blue',  image: 'images/vehicle/car03.webp' },
-                { brand: 'Porshe',     refer: 'Carrera',    model: '2024', color: 'Black', image: 'images/vehicle/car04.webp' },
-                { brand: 'Wolkswagen', refer: 'Arteon',     model: '2010', color: 'Green', image: 'images/vehicle/car05.webp' }
+                { brand: 'BMW',    refer: 'm4', model: '2025', color: 'Blue gray',   image: 'images/vehicle/car01.webp' },
+                { brand: 'Aston Martin', refer: 'Superleggera', model: '2018', color: 'Blue', image: 'images/vehicle/car02.webp' },
+                { brand: 'Ferrari',        refer: '488',         model: '2020', color: 'Black',  image: 'images/vehicle/car03.webp' },
+                { brand: 'Mercedes',     refer: 'GT 63',    model: '2024', color: 'Gray', image: 'images/vehicle/car04.webp' },
+                { brand: 'McLaren', refer: '765LT',     model: '2021', color: 'Orange', image: 'images/vehicle/car05.webp' }
             ]
         }
 
