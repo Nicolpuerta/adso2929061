@@ -537,7 +537,7 @@ background-size: contain;
 
 
 body.js {
-    background-color: #ECD74E;
+
     background-color: #F0DB4F;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23F0DB4F' cx='50' cy='0' r='50'/%3E%3Cg fill='%23ebd74d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e6d34b' cx='50' cy='100' r='50'/%3E%3Cg fill='%23e1cf49' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23dccb47' cx='50' cy='200' r='50'/%3E%3Cg fill='%23d7c745' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d2c344' cx='50' cy='300' r='50'/%3E%3Cg fill='%23cdc042' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c8bc40' cx='50' cy='400' r='50'/%3E%3Cg fill='%23c4b83e' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23bfb43c' cx='50' cy='500' r='50'/%3E%3Cg fill='%23bab03a' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b5ac38' cx='50' cy='600' r='50'/%3E%3Cg fill='%23b1a837' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23aca535' cx='50' cy='700' r='50'/%3E%3Cg fill='%23a7a133' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a39d31' cx='50' cy='800' r='50'/%3E%3Cg fill='%239e992f' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%239a962e' cx='50' cy='900' r='50'/%3E%3Cg fill='%2395922c' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23918E2A' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
     background-attachment: fixed;
@@ -561,7 +561,7 @@ body.js {
                 font-weight: 500;
 
                 span {
-                    background-color: #ECD74E;
+                    background-color: #F0DB4F;
                     justify-content: center;
                 }
             }
