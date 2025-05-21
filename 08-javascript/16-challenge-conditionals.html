@@ -1,26 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>00- Template</title>
+    <title>16- Challenge Conditionals</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        
+       
+        div.weather {
+            div.search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                input.query {
+                    border: none;
+                    border-radius: 5rem;
+                    outline: none;
+                    padding: 0.6rem 0.8rem;
+                }
+
+                button.btn-search {
+                    border: none;
+                    cursor: point;
+                    background: transparent;
+                    width: 48px;
+                    transition: transform 0.2s ease-in;
+
+                    svg {
+                        color: #fff;
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    </style>
 </head>
+
 <body class="js">
     <nav>
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
         <header>
-            <h1>00- Template </h1>
-            <h2>Description</h2>
+            <h1>16- Challenge Conditionals </h1>
+            <h2>Solve problems using conditional logic.</h2>
         </header>
         <section>
+            <div class="weather">
+                <div class="search">
+                    <input class="query" type="text" placeholder="location">
+                    <button class="btn-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </button>
+                </div>
+
+
+                <div class="fondo">
+                <img src="../08-javascript/images/conditi/fondo-light.png" alt="">
+                <p class="lala">Colombia</p>
+                </div>
+
+
+
+            </div>
         </section>
     </main>
+    <script>
+        //elements
+        const q = document.querySelector('.query')
+        const btnSearch = document.querySelector('.btn-search')
+        const infoList = document.querySelector('.info')
+        //Events
+        btnSearch.addEventListener('click', () => {
+            if (q.value.length > 0) {
+                showWeather(q.value)
+                q.value = ''
+            } else {
+                alert('Please enter a location')
+            }
 
+        })
+
+
+        const showWeather = async (q) => {
+            const url = `https://api.weatherapi.com/v1/current.json?key=9a61cceb9d46444fa9d11106251005&q=${q}`
+            const response = await fetch(url)
+            const data = await response.json()
+            console.log(data)
+
+
+            const info = {
+                "country": data.location.country,
+                "name": data.location.name,
+                "datatime": data.current.last_updated,
+                "tempc": data.current.temp_c,
+                "isDay": data.current.is_day,
+                "conditionText": data.current.condition.text,
+                "conditionIcon": data.current.condition.icon,
+                "humidity": data.current.humidity,
+                "cloud": data.current.cloud
+            }
+            //console.table(info)
+            //infoList.textContent = JSON.stringify(info)
+            infoList.innerHTML = ''
+            for (i in info) {
+                if (i == 'conditionIcon') {
+                    infoList.innerHTML += `<li>${i}: <img src='${info[i]}'width='30'> </li>`
+                } else {
+                    infoList.innerHTML += `<li>${i}:  ${info[i]}</li>`
+                }
+            }
+        }
+        showWeather('Manizales')
+    </script>
 </body>
+
 </html>
