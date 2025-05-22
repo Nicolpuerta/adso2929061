@@ -90,7 +90,7 @@
                     position: absolute;
                     color: #05406d;
                     top: 160px;
-                    left: 50%;
+                    left: 51%;
                     transform: translateX(-50%);
                     font-size: 3rem;
                     text-shadow: 0 0 3px #7CC5FF;
@@ -192,7 +192,7 @@
                         position: absolute;
                         color: #05406d;
                         top: 160px;
-                        left: 47%;
+                        left: 49%;
                         transform: translateX(-50%);
                         font-size: 3rem;
                         text-shadow: 0 0 3px #7CC5FF;
@@ -367,7 +367,7 @@
             humedad.textContent = `Humidity: ${info.humidity}`
             nube.textContent = `Cloud: ${info.cloud}`
             icoCon.src = info.conditionIcon
-            tempText.textContent = info.tempc
+            tempText.textContent = `${info.tempc}° `
         }
         showWeather('Manizales')
     </script>
