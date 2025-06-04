@@ -141,7 +141,7 @@
             setTimeout(()=>{
                 loader.classList.add('hide')
                 pokemons.classList.remove('hide')
-            },4000)
+            },3000)
             for (let pk = start; pk <= end; pk++) {
                 const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
                 const response = await fetch(url)
