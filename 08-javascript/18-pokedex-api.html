@@ -1,66 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>18 - Pokedex Api</title>
+    <title>18- Pokedex Api</title>
     <link rel="stylesheet" href="../css/styles.css">
-<style>
-    ul.pokemons {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.4rem;
-        li {
-            border: 2px solid rgba(194, 184, 96, 0.6);
-            border-radius: 0.4rem;
-            text-align: center;
-            h4, h5 {
-                margin: 0;
+    <style>
+        select.pk-generation {
+            appearance: none;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            margin: 2rem auto;
+        }
+
+        ul.pokemons {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.4rem;
+
+            li {
+                border: 2px solid rgba(194, 184, 96, 0.6);
+                border-radius: 0.4rem;
                 text-align: center;
+
+                h4,
+                h5 {
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+            &.hide {
+                display: none;
             }
         }
-    }
-</style>
+        img.loader {
+            display: flex;
+            margin: 8rem auto;
+            width: 160px;
+            &.hide {
+                display: none;
+            }
+        }
+    </style>
 </head>
+
 <body class="js">
     <nav>
         <a href="index.html">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
-     </nav>
+    </nav>
     <main>
         <header>
-            <h1>18 - Pokedex Api</h1>
+            <h1>18- Pokedex Api</h1>
             <h2>Fetch and display data from the Pokedex API</h2>
-        
+
         </header>
         <section>
+            <select class="pk-generation">
+
+            </select>
+            <img src="images/pokemon.gif" class="loader" >
             <ul class="pokemons"></ul>
         </section>
     </main>
     <script>
-        //elements
-        const pokemons = document.querySelector('.pokemons')
 
-        const loadPokemons = async (start, end) => {
-            for(let pk=start; pk<=end; pk++){
-            const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
-            const response = await fetch(url)
-            const data = await response.json()
-            //console.log(data)
-            pokemons.innerHTML += `<li>
-                                        <h4>${data.id}</h4>
-                                        <h4>${data.name}</h4>
-                                        
-                                        <img src="${data.sprites.front_default}">
-                                    </li>`    
-            }
-            
+        //Objects
+
+        const types = {
+            normal: "#a8a77a",
+            fire: "#ee8130",
+            water: "#6390f0",
+            electric: "#f7d02c",
+            grass: "#7ac74c",
+            ice: "#96d9d6",
+            fighting: "#c22e28",
+            poison: "#a33ea1",
+            ground: "#e2bf65",
+            flying: "#a98ff3",
+            psychic: "#f95587",
+            bug: "#a6b91a",
+            rock: "#b6a136",
+            ghost: "#735797",
+            dragon: "#6f35fc",
+            dark: "#705746",
+            steel: "#b7b7ce",
+            fairy: "#d685ad",
+            shadow: "#5a5a5a",
+            unknown: "#68a090",
         }
-        loadPokemons(1,1025) 
+
+
+        const generations = {
+            range: [
+                { from: 1, to: 151 },
+                { from: 152, to: 251 },
+                { from: 252, to: 386 },
+                { from: 387, to: 493 },
+                { from: 494, to: 649 },
+                { from: 650, to: 721 },
+                { from: 722, to: 809 },
+                { from: 810, to: 890 },
+                { from: 891, to: 1025 }
+            ]
+        }
+
+        // select
+        const pkGeneration = document.querySelector('.pk-generation')
+        
+        pkGeneration.innerHTML = `<option value="">Select a generation...</option>`
+        generations['range'].forEach((element, index) => {
+            pkGeneration.innerHTML += `<option value="${index}">Generation ${++index}</option>`
+        });
+
+
+        //events
+        pkGeneration.addEventListener('change', function (e) {
+            if (this.value != "") {
+                loadPokemon(generations.range[this.value].from, generations.range[this.value].to)
+            }
+
+        })
+
+        //Elements 
+        const pokemons = document.querySelector('.pokemons')
+        const loader = document.querySelector('.loader')
+        const loadPokemon = async (start, end) => {
+            pokemons.classList.add('hide')
+            loader.classList.remove('hide')
+            pokemons.innerHTML = ""
+            setTimeout(()=>{
+                loader.classList.add('hide')
+                pokemons.classList.remove('hide')
+            },4000)
+            for (let pk = start; pk <= end; pk++) {
+                const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
+                const response = await fetch(url)
+                const data = await response.json()
+
+                let typeColor = data.types[0].type.name
+                //console.log(data)
+
+                pokemons.innerHTML += `<li style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
+                                            <h4>${data.id}</h4>
+                                            <h5>${data.name}</h5>
+                                            <img src="${data.sprites.front_default}">
+                                        </li>`
+            }
+
+        }
+        loadPokemon(1, 151)
     </script>
 </body>
+
 </html>
