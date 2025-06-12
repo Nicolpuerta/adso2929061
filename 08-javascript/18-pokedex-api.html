@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         select.pk-generation {
+            background-color: #574ff3;
             appearance: none;
             padding: 0.4rem 0.8rem;
             display: flex;
@@ -15,28 +16,127 @@
         }
 
         ul.pokemons {
+
+            left: 50%;
             list-style: none;
             margin: 0;
             padding: 0;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             align-items: center;
-            
-            height: 570px;
-            gap: 5px;
+            height: 480px;
+            gap: 0.4rem;
             overflow-y: scroll;
-            
-
+            scrollbar-color: #1f16bb transparent;
+            scrollbar-width: thin;
 
             li {
-                border: 2px solid rgba(194, 184, 96, 0.6);
+                border: 2px solid rgba(0, 0, 0, 0.6);
                 border-radius: 0.4rem;
                 text-align: center;
+                align-items: center;
 
-                h4,
-                h5 {
-                    margin: 0;
+                h4{
                     text-align: center;
+                }
+
+                h5 {
+                    
+                    text-align: center;
+                }
+
+                ul.types {
+                    list-style: none;
+                    display: flex;
+                    border: none;
+                    gap: 10px;
+
+                    li {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        border: none;
+
+                        &.normal {
+                            background: url(images/types-pokemons/lg-ico-normal.png) no-repeat center;
+                        }
+
+                        &.fire {
+                            background: url(images/types-pokemons/lg-ico-fire.png) no-repeat center;
+                        }
+
+                        &.water {
+                            background: url(images/types-pokemons/lg-ico-water.png) no-repeat center;
+                        }
+
+                        &.electric {
+                            background: url(images/types-pokemons/lg-ico-electric.png) no-repeat center;
+                        }
+
+                        &.grass {
+                            background: url(images/types-pokemons/lg-ico-grass.png) no-repeat center;
+                        }
+
+                        &.ice {
+                            background: url(images/types-pokemons/lg-ico-ice.png) no-repeat center;
+                        }
+
+                        &.fighting {
+                            background: url(images/types-pokemons/lg-ico-fight.png) no-repeat center;
+                        }
+
+                        &.poison {
+                            background: url(images/types-pokemons/lg-ico-poison.png) no-repeat center;
+                        }
+
+                        &.ground {
+                            background: url(images/types-pokemons/lg-ico-ground.png) no-repeat center;
+                        }
+
+                        &.flying {
+                            background: url(images/types-pokemons/lg-ico-flying.png) no-repeat center;
+                        }
+
+                        &.psychic {
+                            background: url(images/types-pokemons/lg-ico-psychic.png) no-repeat center;
+                        }
+
+                        &.bug {
+                            background: url(images/types-pokemons/lg-ico-bug.png) no-repeat center;
+                        }
+
+                        &.rock {
+                            background: url(images/types-pokemons/lg-ico-rock.png) no-repeat center;
+                        }
+
+                        &.ghost {
+                            background: url(images/types-pokemons/lg-ico-ghost.png) no-repeat center;
+                        }
+
+                        &.dragon {
+                            background: url(images/types-pokemons/lg-ico-dragon.png) no-repeat center;
+                        }
+
+                        &.dark {
+                            background: url(images/types-pokemons/lg-ico-dark.png) no-repeat center;
+                        }
+
+                        &.steel {
+                            background: url(images/types-pokemons/lg-ico-steel.png) no-repeat center;
+                        }
+
+                        &.fairy {
+                            background: url(images/types-pokemons/lg-ico-fairy.png) no-repeat center;
+                        }
+
+                        &.shadow {
+                            background: url(images/types-pokemons/) no-repeat center;
+                        }
+
+                        &.unknown {
+                            background: url(images/types-pokemons/) no-repeat center;
+                        }
+                    }
                 }
             }
 
@@ -56,7 +156,7 @@
         }
 
         div.uno {
-            background-color: #9582c1;
+            background-color: #1184A7;
             width: 360px;
             height: 680px;
             text-align: center;
@@ -82,6 +182,26 @@
             border-radius: 20px;
             font-size: 1.2rem;
         }
+
+        .pokemon-button {
+            display: flex;
+            width: 300px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            margin-top: 45px;
+            margin-left: 25px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #000000;
+        }
+
+        div.tres {
+            background-color: #000000;
+        }
     </style>
 </head>
 
@@ -106,23 +226,25 @@
         <div class="uno">
             <h1>POKEDEX</h1>
             <img class="mimi" src="images/pokemon 2.png" alt="">
-            <a href="#dos">
-                <img src="" alt="">
+            <a href="#dos" class="pokemon-button">
                 <h5>Pokemons</h5>
             </a>
-
         </div>
 
 
-
         <div class="dos" id="dos">
+            <h1>POKEMONS</h1>
             <select class="pk-generation">
             </select>
             <img src="images/pokemon.gif" class="loader">
             <ul class="pokemons"></ul>
         </div>
+
+        <div class="tres"  id="tres">
+           
+        </div>
     </main>
-    <script>
+<script>
 
         //Objects
 
@@ -184,6 +306,9 @@
         //Elements 
         const pokemons = document.querySelector('.pokemons')
         const loader = document.querySelector('.loader')
+
+
+
         const loadPokemon = async (start, end) => {
             pokemons.classList.add('hide')
             loader.classList.remove('hide')
@@ -191,7 +316,7 @@
             setTimeout(() => {
                 loader.classList.add('hide')
                 pokemons.classList.remove('hide')
-            }, 3000)
+            }, 4000)
             for (let pk = start; pk <= end; pk++) {
                 const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
                 const response = await fetch(url)
@@ -199,16 +324,71 @@
 
                 let typeColor = data.types[0].type.name
                 //console.log(data)
-
-                pokemons.innerHTML += `<li style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
-                                            <h4>${data.id}</h4>
+                let typeli = ""
+                if (data.types.length > 1) {
+                    typeli = `<li class="${data.types[0].type.name}"></li><li class="${data.types[1].type.name}"></li>`
+                } else {
+                    typeli = `<li class="${data.types[0].type.name}"></li>`
+                }
+                pokemons.innerHTML += `<li onclick="showPokemon(${data.id})" style="border-color: ${types[typeColor]}; background: linear-gradient(black, ${types[typeColor]})">
+                                            <h4>#${data.id}</h4>
                                             <h5>${data.name}</h5>
+                                            <ul class="types">
+                                                ${typeli}
+                                            </ul>
                                             <img src="${data.sprites.front_default}">
                                         </li>`
             }
-
         }
         loadPokemon(1, 151)
+
+        async function showPokemon(pk) {
+            const url = `https://pokeapi.co/api/v2/pokemon/${pk}`
+            const response = await fetch(url)
+            const data = await response.json()
+            console.log(data)
+            //const typez=data.
+            //Obtengo el div donde voy almacenar la informacion
+            tarjeta = document.getElementById('tarjeta')
+            //limpio ese div
+            tarjeta.innerHTML = ""
+
+            let cadena = ""
+            let typeli = ""
+
+
+            const statsHTML = data.stats.map(stat => {
+                const value = stat.base_stat;
+                return `
+                    <div style="position: relative; margin-bottom: 10px;">
+                        <strong>${stat.stat.name.toUpperCase()}:</strong> ${value}
+                        <div style="width: 100%; background: #333; border-radius: 10px; overflow: hidden; height: 14px;">
+                            <div style="width: ${value > 100 ? 100 : value}%; background: #4CAF50; height: 100%;"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if (data.types.length > 1) {
+                typeli = `<li class="${data.types[0].type.name}"></li><li class="${data.types[1].type.name}"></li>`
+            } else {
+                typeli = `<li class="${data.types[0].type.name}"></li>`
+            }
+            cadena += `<div class="tj2" style="background: linear-gradient(black,${types[data.types[0].type.name]});">
+                <h5>${data.name}</h5>
+                <ul class="types">
+                    ${typeli}
+                    </ul>
+                    <img src="${data.sprites.front_default}">
+                    ${statsHTML}
+                    <h4>#${data.id}</h4>
+                    </div>`
+            tarjeta.innerHTML = cadena
+
+            
+
+        }
+
     </script>
 </body>
 
