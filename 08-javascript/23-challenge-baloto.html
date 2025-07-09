@@ -1,26 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>00- Template</title>
+    <title>23- Challenge baloto</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        div.uno {
+            background-color: #090F3F;
+            width: 360px;
+            height: 680px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 20px auto;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h2.super {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        h2.astro {
+            margin: 0;
+            color: #FFF212;
+            font-size: 2rem;
+        }
+
+        .signo {
+            margin: 110px 0;
+            width: 94px;
+            height: 94px;
+            background-color: #030728;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bolas {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .bola {
+            width: 50px;
+            height: 50px;
+            background-color: #FFF212;
+            color: #090F3F;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play {
+            margin-top: 55px;
+            width: 150px;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #001B82;
+            border-radius: 25px;
+            cursor: pointer;
+
+        }
+    </style>
 </head>
+
 <body class="js">
     <nav>
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
         <header>
-            <h1>00- Template </h1>
-            <h2>Description</h2>
+            <h1>23- Challenge baloto </h1>
+            <h2>Simulate a lottery number generator</h2>
         </header>
         <section>
+            <div class="uno">
+                <div class="titulo">
+                    <h2 class="super">Super</h2>
+                    <h2 class="astro">astro Luna</h2>
+                </div>
+                <div class="zodiacal">
+                    <div class="signo" id="signo">Aries</div>
+                </div>
+                <div class="bolas">
+                    <div class="bola" id="bola1">0</div>
+                    <div class="bola" id="bola2">0</div>
+                    <div class="bola" id="bola3">0</div>
+                    <div class="bola" id="bola4">0</div>
+                </div>
+                <div class="play" id="play">play</div>
+            </div>
+
+            </div>
         </section>
     </main>
+    <script>
+        const signoEl = document.querySelector('#signo')
+        const bolas = document.querySelectorAll('.bola')
+        const playBtn = document.querySelector('#play')
+
+       
+        const signos = [
+            "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"
+        ]
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5)
+        }
+
+        playBtn.addEventListener('click', () => {
+            const shuffledNums = shuffle([...numeros]).slice(0, 4)
+
+            bolas.forEach((bola, idx) => {
+                bola.textContent = shuffledNums[idx]
+            })
+
+            const signoRandom = signos[Math.floor(Math.random() * signos.length)]
+            signoEl.textContent = signoRandom
+        })
+    </script>
 
 </body>
+
 </html>
