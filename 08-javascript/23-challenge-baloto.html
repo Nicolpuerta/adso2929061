@@ -121,33 +121,70 @@
             </div>
         </section>
     </main>
-    <script>
-        const signoEl = document.querySelector('#signo')
-        const bolas = document.querySelectorAll('.bola')
-        const playBtn = document.querySelector('#play')
 
-       
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        const signoEl = document.querySelector('#signo');
+        const bolas = document.querySelectorAll('.bola');
+        const playBtn = document.querySelector('#play');
+
         const signos = [
             "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"
-        ]
-        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        ];
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
         function shuffle(array) {
-            return array.sort(() => Math.random() - 0.5)
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function showConfetti() {
+            const duration = 2000;
+            const end = Date.now() + duration;
+            const colors = ['#FFF212', '#001B82'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 10,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 10,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
         }
 
         playBtn.addEventListener('click', () => {
-            const shuffledNums = shuffle([...numeros]).slice(0, 4)
-
+            // números
+            const shuffledNums = shuffle(numeros).slice(0, 4);
             bolas.forEach((bola, idx) => {
-                bola.textContent = shuffledNums[idx]
-            })
+                bola.textContent = shuffledNums[idx];
+            });
 
-            const signoRandom = signos[Math.floor(Math.random() * signos.length)]
-            signoEl.textContent = signoRandom
-        })
+            // signo
+            const signoRandom = signos[Math.floor(Math.random() * signos.length)];
+            signoEl.textContent = signoRandom;
+
+            
+            showConfetti();
+        });
     </script>
-
 </body>
 
 </html>
