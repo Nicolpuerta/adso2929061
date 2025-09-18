@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>28- Challenge events</title>
+    <title>Treasures of the Sea</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        /* ================================== */
-        /* === 1. ESTILOS GENERALES Y LAYOUT (SIN VARIABLES) === */
-        /* ================================== */
-
         body {
             background-color: #1a202c;
             display: flex;
@@ -18,33 +14,44 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            overflow: hidden; 
+            font-family: poppins;
         }
-
         main {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            width: 95%;
+            max-width: 552px;
+            padding-bottom: 20px;
+        }
+        header {
+            text-align: center;
+            color: #fff;
+            padding: 20px 0;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            color: white;
+            margin-bottom: 0;
+        }
+        header h2 {
+            color: white;
+            margin-top: 5px;
+            font-size: 0.9rem;
         }
 
         section {
-            /* Dimensiones del juego (400px x 750px) */
-            width: 400px;
-            height: 750px;
+            width: 552px;
+            height: 90vh; 
+            max-height: 876px; 
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden; 
             position: relative;
-        }
-
-        /* Fondo del Juego (Océano) */
-        .deep-sea-bg {
-            background: linear-gradient(to bottom, #72A5C1 0%, #10668F 100%);
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 1;
+            background-color: #0A3D62;
+            border-radius: 20px;
         }
 
         .screen {
@@ -56,237 +63,277 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             z-index: 10;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            color: white;
         }
 
         .hidden {
             display: none !important;
         }
-
-        /* ================================== */
-        /* === 2. ESTILOS PANTALLA DE INICIO === */
-        /* ================================== */
-
         #start-screen {
-            background-color: #0A3D62; /* Azul oscuro */
-            padding: 20px;
-            gap: 20px;
-            color: white;
-            z-index: 20; 
+            background-image: url('images/submarinos/fondo1.png');
+            z-index: 20;
+            justify-content: space-evenly;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            height: 100%;
         }
-
-        #start-screen h1 {
-            font-size: 2.2rem;
-            text-shadow: 3px 3px 0 #000;
-            margin-bottom: 30px;
-        }
-        
         #start-screen h2 {
             font-size: 1.5rem;
-            margin: 0;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
-        /* Contenedor de Submarinos de Selección */
+        .sub-selection-wrapper {
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: 480px;
+        }
+
+        .instructions-box {
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+        }
+        .instructions-box h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+        .instructions-box p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .sub-selection-wrapper {
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: 480px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
         .sub-select-container {
             display: flex;
+            flex-grow: 1;
             gap: 15px;
             padding: 10px;
             overflow-x: scroll;
-            max-width: 90%;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
+        .sub-select-container::-webkit-scrollbar {
+            display: none;
+        }
         .sub-select {
             width: 110px;
-            height: 110px;
+            aspect-ratio: 1 / 1;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             border: 3px solid transparent;
             border-radius: 15px;
             cursor: pointer;
-            flex-shrink: 0; 
-            transition: border-color 0.2s;
-            background-color: rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: rgba(0, 0, 0, 0.1);
         }
-
         .sub-select.selected {
-            border-color: #FFD700; /* Amarillo */
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            border-color: #4BB5FF;
+            box-shadow: 0 0 15px rgba(75, 181, 255, 0.8);
         }
-
-        /* Instrucciones Box */
-        .instructions-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 85%;
-            margin-top: 30px;
-        }
-        .instructions-box p {
-            font-size: 1rem;
-            line-height: 1.5;
-            font-weight: bold;
-            text-shadow: 1px 1px 0 #000000;
-        }
-        .instructions-box h3 {
-             margin-top: 0;
-             margin-bottom: 10px;
-             font-size: 1.2rem;
-        }
-
-        /* Botón Play */
-        .play-button {
-            padding: 15px 50px;
+        .scroll-arrow {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
             font-size: 1.5rem;
+            color: white;
             font-weight: bold;
-            color: black;
-            background-color: #FFD700; /* Amarillo vibrante */
+            text-shadow: 1px 1px 2px #000;
+            margin: 0 5px;
+            flex-shrink: 0;
+        }
+        .play-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a202c;
+            background-color: #d8d8d8;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 5px 0 #CCAA00;
-            transition: all 0.1s;
-            margin-top: 30px;
+            box-shadow: 0 4px 0 #9e9e9e;
+            transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
         }
-
-        .play-button:disabled {
-            background-color: #AAAAAA;
-            box-shadow: 0 5px 0 #777777;
-            cursor: not-allowed;
-        }
-
-        .play-button:active {
-            box-shadow: 0 2px 0 #CCAA00;
-            transform: translateY(3px);
-        }
-
-        /* ================================== */
-        /* === 3. ESTILOS PANTALLA DE JUEGO === */
-        /* ================================== */
-
-        #game-screen {
-            background-color: transparent; 
-        }
-
-        /* HUD - Interfaz Superior */
-        .hud {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 0;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 20;
-        }
-
-        .hud-top {
-             display: flex;
-             justify-content: flex-end;
-             width: 100%;
-             padding: 0 20px;
-             box-sizing: border-box;
-        }
-        
-        .score {
+        .play-button:not([disabled]) {
+            background-color: #4BB5FF;
             color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px #000;
+            box-shadow: 0 4px 0 #2a8cc8;
         }
-        
-        /* Contenedor de la Barra de Tiempo */
-        .time-container {
-            width: 80%;
-            height: 25px;
-            background-color: #3d5a80;
-            border: 3px solid #000000;
-            border-radius: 12px;
-            overflow: hidden; 
-            margin-top: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        .play-button:active:not([disabled]) {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #2a8cc8;
         }
-
-        .time-bar {
-            height: 100%;
-            width: 100%;
-            background-color: #38CC70; /* Verde inicial */
-            transition: width 0.3s linear;
+        .play-button:disabled {
+            background-color: #d8d8d8;
+            color: #888;
+            box-shadow: 0 4px 0 #9e9e9e;
+            cursor: default;
         }
-
-        /* ================================== */
-        /* === 4. ESTILOS DE OBJETOS DEL JUEGO === */
-        /* ================================== */
-
-        /* Submarino del jugador */
+        #game-screen {
+            background-image: url('images/submarinos/fondo2.png');
+        }
         #playerSubmarine {
             position: absolute;
             bottom: 50px;
-            width: 80px; /* --sub-size */
-            height: 80px; /* --sub-size */
+            width: 80px;
+            height: 80px;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            z-index: 50;
-        }
-
-        /* Estilo genérico para ítems */
-        .game-item {
-            position: absolute;
-            width: 50px; /* --item-size */
-            height: 50px; /* --item-size */
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            top: 0; 
             z-index: 40;
         }
-
-        /* Tipos de Ítems (Usando las imágenes provistas) */
-        .coin {
-            background-image: url('moneda.png');
-            width: 40px; /* --coin-size + ajustado */
-            height: 40px; /* --coin-size + ajustado */
+        .game-item {
+            position: absolute;
+            top: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 30;
+            aspect-ratio: 1 / 1;
         }
-
+        .coin {
+            background-image: url('images/submarinos/moneda.png');
+            width: 40px;
+            height: 40px;
+        }
         .clock {
-            background-image: url('reloj.png');
+            background-image: url('images/submarinos/reloj.png');
             width: 50px;
             height: 50px;
         }
-
         .fish {
-            background-image: url('pez3.png');
-            width: 60px; /* Ligeramente más grande para que sea un obstáculo */
+            width: 60px;
             height: 60px;
         }
-        
-        /* Game Over */
+        .hud {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+            z-index: 50;
+        }
+
+        .time-container {
+            position: absolute;
+            top: 8%;
+            left: 15px;
+            width: 30px;
+            height: 80%;
+            background-color: rgba(61, 90, 128, 0.6);
+            border: 3px solid #000000;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .time-bar {
+            width: 100%;
+            height: 100%;
+            background-color: #38CC70;
+            transition: height 0.3s linear;
+        }
         #game-over-screen {
+            background-image: url('images/submarinos/fondo2.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
             background-color: rgba(0, 0, 0, 0.85);
             color: white;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             gap: 20px;
             z-index: 100;
         }
         #game-over-screen h2 {
             font-size: 3rem;
             margin-bottom: 0;
-            color: #FF4747;
+            color: #FF4744;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            animation: appearScale 0.8s ease-out;
         }
+
         #finalScore {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            margin-top: 10px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes appearScale {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        #game-over-screen .play-button {
+            padding: 15px 35px;
+            font-size: 1.3rem;
+            background-color: #4BB5FF;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 0 #2a8cc8;
+            transition: all 0.2s ease;
+        }
+
+        #game-over-screen .play-button:hover {
+            background-color: #5ac7ff;
+        }
+
+        #game-over-screen .play-button:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #2a8cc8;
         }
     </style>
 </head>
-<body class="js">
+    <body class="js">
     <nav>
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
@@ -294,319 +341,235 @@
             <h1>28- Challenge events </h1>
             <h2>Create time-based interactive challenges</h2>
         </header>
-             <section id="gameArea">
-            <div class="deep-sea-bg"></div>
-            
+        <section id="gameArea">
             <div id="start-screen" class="screen">
-                <h1>Treasures of the Sea</h1>
-                
-                <h2>Selecciona tu Submarino</h2>
-                <div class="sub-select-container" id="subSelectContainer">
-                    </div>
+                <div style="margin-top: 150px;">
+                    <h2 style="font-size: 1.5rem; color: white;">Selecciona tu Submarino</h2>
+                </div>
 
+                <div class="sub-selection-wrapper">
+                    <div class="scroll-arrow" id="scrollLeft">&lt;</div>
+                    <div class="sub-select-container" id="subSelectContainer"></div>
+                    <div class="scroll-arrow" id="scrollRight">&gt;</div>
+                </div>
                 <div class="instructions-box">
                     <h3>¿Cómo jugar?</h3>
-                    <p>Recoge monedas para puntuar y relojes para ganar tiempo, pero evita los peces, ¡ya que te restarán segundos!</p>
+                    <p>Recoge monedas para puntuar y relojes para ganar tiempo, ¡pero evita los peces, ya que te
+                        restarán segundos!</p>
                 </div>
-                
                 <button class="play-button" id="playButton" disabled>PLAY</button>
             </div>
-
             <div id="game-screen" class="screen hidden">
-                <div class="hud">
-                    <div class="hud-top">
-                        </div>
-                    <div class="time-container">
-                        <div class="time-bar" id="timeBar"></div>
-                    </div>
-                    <span class="score" id="scoreDisplay">PUNTOS: 0</span>
+                <div class="hud"><span id="scoreDisplay">PUNTOS: 0</span></div>
+                <div class="time-container">
+                    <div class="time-bar" id="timeBar"></div>
                 </div>
-
                 <div id="playerSubmarine"></div>
             </div>
-
             <div id="game-over-screen" class="screen hidden">
-                <h2>¡JUEGO TERMINADO!</h2>
+                <h2>¡GAME OVER!</h2>
                 <p id="finalScore"></p>
                 <button class="play-button" onclick="resetGame()">VOLVER A JUGAR</button>
             </div>
         </section>
-        
     </main>
     <script>
-        // ==================================
-        // === 5. CONFIGURACIÓN Y LÓGICA JS ===
-        // ==================================
-
-        // NOTA: Las variables del juego (tiempos, puntos, velocidades) SÍ deben estar en JS.
-        const GAME_CONFIG = {
-            MAX_TIME: 30, // Tiempo inicial en segundos
-            TIME_GAIN: 5,  // Segundos ganados por reloj
-            TIME_LOSS: 4,  // Segundos perdidos por pez
-            COIN_POINTS: 10,
-            PLAYER_SPEED: 8, 
-            ITEM_SPEED_MIN: 2, 
-            ITEM_SPEED_MAX: 4, 
-            SPAWN_INTERVAL: 800, // Intervalo de aparición de ítems (ms)
-            SUBMARINES: {
-                'sub1': 'submarino1.png',
-                'sub2': 'submarino2.png',
-                'sub3': 'submarino3.png',
-                'sub4': 'submarino4.png',
-                'sub5': 'submarino5.png',
+        const C = {
+            MAX_TIME: 30, TIME_GAIN: 5, TIME_LOSS: 4, COIN_POINTS: 10,
+            PLAYER_SPEED: 8, ITEM_SPEED_MIN: 2, ITEM_SPEED_MAX: 4,
+            SPAWN_INTERVAL: 800, SCROLL_AMOUNT: 125,
+            SUBS: {
+                's1': 'images/submarinos/submarino1.png', 's2': 'images/submarinos/submarino2.png',
+                's3': 'images/submarinos/submarino3.png', 's4': 'images/submarinos/submarino4.png',
+                's5': 'images/submarinos/submarino5.png',
+            },
+            FISH: [
+                'images/submarinos/pez1.png', 'images/submarinos/pez2.jpg',
+                'images/submarinos/pez3.png', 'images/submarinos/pez4.jpg',
+            ],
+            PROBS: {
+                'coin': 0.65, 
+                'fish': 0.25,  
+                'clock': 0.13  
             }
         };
 
-        // --- Variables de Estado del Juego ---
-        let gameState = 'START';
-        let score = 0;
-        let currentTime = GAME_CONFIG.MAX_TIME;
-        let gameTimer;
-        let spawnItemInterval;
-        let animationFrame;
-        let items = [];
-        let playerX = 0;
-        let playerMovement = 0;
-        let selectedSubmarine = null;
+        let state = 'START', score = 0, time = C.MAX_TIME;
+        let timer, spawnInterval, frame;
+        let items = [], playerX = 0, movement = 0, selectedSub = null;
 
-        // --- Referencias DOM ---
-        const $gameArea = document.getElementById('gameArea');
-        const $startScreen = document.getElementById('start-screen');
-        const $gameScreen = document.getElementById('game-screen');
-        const $gameOverScreen = document.getElementById('game-over-screen');
-        const $playButton = document.getElementById('playButton');
-        const $timeBar = document.getElementById('timeBar');
-        const $scoreDisplay = document.getElementById('scoreDisplay');
-        const $playerSubmarine = document.getElementById('playerSubmarine');
-        const $subSelectContainer = document.getElementById('subSelectContainer');
-        
-        let gameAreaRect = {};
+        const $A = document.getElementById('gameArea');
+        const $S = document.getElementById('start-screen');
+        const $G = document.getElementById('game-screen');
+        const $O = document.getElementById('game-over-screen');
+        const $P = document.getElementById('playButton');
+        const $T = document.getElementById('timeBar');
+        const $Sc = document.getElementById('scoreDisplay');
+        const $Sub = document.getElementById('playerSubmarine');
+        const $Select = document.getElementById('subSelectContainer');
+        const $ScrollLeft = document.getElementById('scrollLeft');
+        const $ScrollRight = document.getElementById('scrollRight');
 
-        // --- 6. Manejo de la Interfaz (UI) ---
+        let rect = {};
 
-        function setupSubmarineSelection() {
-            const subKeys = Object.keys(GAME_CONFIG.SUBMARINES);
-            subKeys.forEach(key => {
+        function setupUI() {
+            rect = $A.getBoundingClientRect();
+
+            Object.keys(C.SUBS).forEach(key => {
                 const subDiv = document.createElement('div');
                 subDiv.className = 'sub-select';
-                // Usamos las rutas de imagen de los archivos que proporcionaste
-                subDiv.style.backgroundImage = `url('${GAME_CONFIG.SUBMARINES[key]}')`;
+                subDiv.style.backgroundImage = `url('${C.SUBS[key]}')`;
                 subDiv.dataset.subId = key;
-                subDiv.addEventListener('click', () => selectSubmarine(key));
-                $subSelectContainer.appendChild(subDiv);
+                subDiv.addEventListener('click', () => selectSub(key));
+                $Select.appendChild(subDiv);
             });
-            // Hacemos scroll horizontalmente para que se vean todos
-            $subSelectContainer.scrollLeft = $subSelectContainer.scrollWidth / 2 - $subSelectContainer.clientWidth / 2;
-        }
 
-        function selectSubmarine(subId) {
-            document.querySelectorAll('.sub-select').forEach(div => div.classList.remove('selected'));
-            
-            const selectedDiv = document.querySelector(`[data-sub-id="${subId}"]`);
-            selectedDiv.classList.add('selected');
-            selectedSubmarine = subId;
-            $playButton.disabled = false; // Habilitar el botón PLAY al seleccionar
+            $ScrollLeft.addEventListener('click', () => $Select.scrollBy({ left: -C.SCROLL_AMOUNT, behavior: 'smooth' }));
+            $ScrollRight.addEventListener('click', () => $Select.scrollBy({ left: C.SCROLL_AMOUNT, behavior: 'smooth' }));
+
+            $P.addEventListener('click', startGame);
         }
-        
-        // --- 7. Lógica del Juego ---
+        function selectSub(subId) {
+            document.querySelectorAll('.sub-select').forEach(div => div.classList.remove('selected'));
+            document.querySelector(`[data-sub-id="${subId}"]`).classList.add('selected');
+            selectedSub = subId;
+            $P.disabled = false;
+            $P.classList.remove('play-button:disabled');
+        }
 
         function startGame() {
-            if (!selectedSubmarine) return; 
-            
-            gameAreaRect = $gameArea.getBoundingClientRect();
+            if (!selectedSub) return;
+            rect = $A.getBoundingClientRect();
 
-            $playerSubmarine.style.backgroundImage = `url('${GAME_CONFIG.SUBMARINES[selectedSubmarine]}')`;
-            
-            $startScreen.classList.add('hidden');
-            $gameOverScreen.classList.add('hidden');
-            $gameScreen.classList.remove('hidden');
+            $Sub.style.backgroundImage = `url('${C.SUBS[selectedSub]}')`;
+            playerX = rect.width / 2 - $Sub.offsetWidth / 2;
+            $Sub.style.left = `${playerX}px`;
 
-            // Resetear estado
-            score = 0;
-            currentTime = GAME_CONFIG.MAX_TIME;
-            
-            items.forEach(item => item.element.remove());
-            items = [];
-            
-            // Centrar el submarino y establecer posición inicial
-            playerX = gameAreaRect.width / 2 - $playerSubmarine.offsetWidth / 2;
-            $playerSubmarine.style.left = `${playerX}px`;
-            
-            updateScore(0);
-            updateTimeBar();
-            
-            gameState = 'PLAYING';
-            startGameTimer();
-            spawnItemInterval = setInterval(spawnItem, GAME_CONFIG.SPAWN_INTERVAL);
+            $S.classList.add('hidden'); $O.classList.add('hidden'); $G.classList.remove('hidden');
+
+            score = 0; time = C.MAX_TIME;
+            items.forEach(item => item.element.remove()); items = [];
+
+            updateScore(0); updateTimeBar();
+
+            state = 'PLAYING';
+            timer = setInterval(updateTime, 1000);
+            spawnInterval = setInterval(spawnItem, C.SPAWN_INTERVAL);
             gameLoop();
         }
-
         function gameLoop() {
-            if (gameState !== 'PLAYING') return;
-
+            if (state !== 'PLAYING') return;
             updatePlayerPosition();
             updateItemPositions();
             checkCollisions();
-
-            animationFrame = requestAnimationFrame(gameLoop);
+            frame = requestAnimationFrame(gameLoop);
         }
-
         function updateScore(points) {
             score += points;
-            $scoreDisplay.textContent = `PUNTOS: ${score}`;
+            $Sc.textContent = `PUNTOS: ${score}`;
         }
-
-        // --- 8. Lógica de Tiempo y Game Over ---
-        function startGameTimer() {
-            gameTimer = setInterval(updateTime, 1000); 
-        }
-
         function updateTime() {
-            if (gameState !== 'PLAYING') return;
-            
-            currentTime -= 1;
-            
-            if (currentTime <= 0) {
-                currentTime = 0;
-                gameOver();
-            }
-
+            if (state !== 'PLAYING') return;
+            time -= 1;
+            if (time <= 0) { time = 0; gameOver(); }
             updateTimeBar();
         }
-
         function updateTimeBar() {
-            let percentage = (currentTime / GAME_CONFIG.MAX_TIME) * 100;
-            
+            let percentage = (time / C.MAX_TIME) * 100;
             if (percentage > 100) percentage = 100;
-            if (percentage < 0) percentage = 0; 
+            if (percentage < 0) percentage = 0;
 
-            $timeBar.style.width = percentage + '%';
+            $T.style.height = percentage + '%';
 
-            // Cambio de color por nivel de tiempo
-            if (percentage < 25) {
-                $timeBar.style.backgroundColor = '#ff0000'; // Rojo
-            } else if (percentage < 50) {
-                $timeBar.style.backgroundColor = '#ffc300'; // Amarillo
-            } else {
-                $timeBar.style.backgroundColor = '#38CC70'; // Verde
-            }
+            if (percentage < 25) $T.style.backgroundColor = '#ff0000';
+            else if (percentage < 50) $T.style.backgroundColor = '#ffc300';
+            else $T.style.backgroundColor = '#38CC70';
         }
-
         function gameOver() {
-            gameState = 'GAME_OVER';
-            clearInterval(gameTimer);
-            clearInterval(spawnItemInterval);
-            cancelAnimationFrame(animationFrame);
-            
-            $gameScreen.classList.add('hidden');
+            state = 'GAME_OVER';
+            clearInterval(timer); clearInterval(spawnInterval); cancelAnimationFrame(frame);
+            $G.classList.add('hidden');
             document.getElementById('finalScore').textContent = `Puntuación Final: ${score}`;
-            $gameOverScreen.classList.remove('hidden');
+            $O.classList.remove('hidden');
         }
-
         function resetGame() {
-            $gameOverScreen.classList.add('hidden');
-            $startScreen.classList.remove('hidden');
-            selectedSubmarine = null;
-            $playButton.disabled = true;
+            $O.classList.add('hidden'); $S.classList.remove('hidden');
+            selectedSub = null; $P.disabled = true;
             document.querySelectorAll('.sub-select').forEach(div => div.classList.remove('selected'));
-            gameState = 'START';
+            state = 'START';
         }
-
-        // --- 9. Movimiento del Submarino ---
-
         function updatePlayerPosition() {
-            playerX += playerMovement;
-            
+            playerX += movement;
             const minX = 0;
-            const maxX = gameAreaRect.width - $playerSubmarine.offsetWidth; 
-            
+            const maxX = rect.width - $Sub.offsetWidth;
             if (playerX < minX) playerX = minX;
             if (playerX > maxX) playerX = maxX;
-            
-            $playerSubmarine.style.left = `${playerX}px`;
+            $Sub.style.left = `${playerX}px`;
         }
-        
-        // Manejo de eventos de teclado (para desktop)
-        document.addEventListener('keydown', (e) => {
-            if (gameState !== 'PLAYING') return;
-            if (e.key === 'ArrowRight') playerMovement = GAME_CONFIG.PLAYER_SPEED;
-            if (e.key === 'ArrowLeft') playerMovement = -GAME_CONFIG.PLAYER_SPEED;
-        });
+        const handleInput = (e, isDown) => {
+            if (state !== 'PLAYING') return;
+            if (e.key === 'ArrowRight' || e.key === 'd') movement = isDown ? C.PLAYER_SPEED : 0;
+            if (e.key === 'ArrowLeft' || e.key === 'a') movement = isDown ? -C.PLAYER_SPEED : 0;
+        };
+        document.addEventListener('keydown', (e) => handleInput(e, true));
+        document.addEventListener('keyup', (e) => handleInput(e, false));
 
-        document.addEventListener('keyup', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') playerMovement = 0;
+        $A.addEventListener('touchstart', (e) => {
+            if (state !== 'PLAYING') return; e.preventDefault();
+            const touchX = e.touches[0].clientX;
+            const gameMidPoint = $A.getBoundingClientRect().left + $A.offsetWidth / 2;
+            movement = (touchX < gameMidPoint) ? -C.PLAYER_SPEED : C.PLAYER_SPEED;
         });
-        
-        // Manejo de eventos táctiles (para móvil)
-        $gameArea.addEventListener('touchstart', (e) => {
-            if (gameState !== 'PLAYING') return;
-            // Usamos e.touches[0].clientX para obtener la posición del toque
-            const touchX = e.touches[0].clientX; 
-            const gameMidPoint = gameAreaRect.left + gameAreaRect.width / 2;
-            
-            // Movemos según el lado tocado
-            if (touchX < gameMidPoint) {
-                playerMovement = -GAME_CONFIG.PLAYER_SPEED; 
-            } else {
-                playerMovement = GAME_CONFIG.PLAYER_SPEED; 
+        $A.addEventListener('touchend', () => { movement = 0; });
+
+        function getItemType() {
+            const rand = Math.random();
+            let cumulative = 0;
+            for (const type in C.PROBS) {
+                cumulative += C.PROBS[type];
+                if (rand < cumulative) return type;
             }
-        });
-
-        $gameArea.addEventListener('touchend', () => {
-             playerMovement = 0;
-        });
-
-        // --- 10. Items y Colisiones ---
-
+            return 'coin';
+        }
         function spawnItem() {
-            const itemTypes = ['coin', 'coin', 'coin', 'coin', 'clock', 'fish']; 
-            const type = itemTypes[Math.floor(Math.random() * itemTypes.length)];
-            
+            const type = getItemType();
             const itemElement = document.createElement('div');
             itemElement.className = `game-item ${type}`;
-            
-            // Usamos 50px como tamaño general para calcular el rango de aparición
-            const startX = Math.random() * (gameAreaRect.width - 50); 
+
+            if (type === 'fish') {
+                const fishImg = C.FISH[Math.floor(Math.random() * C.FISH.length)];
+                itemElement.style.backgroundImage = `url('${fishImg}')`;
+            }
+
+            $G.appendChild(itemElement);
+
+            const itemWidth = itemElement.offsetWidth;
+            const startX = Math.random() * (rect.width - itemWidth);
             itemElement.style.left = `${startX}px`;
-            
-            $gameScreen.appendChild(itemElement);
 
-            const item = {
-                element: itemElement,
-                y: -50,
-                speed: Math.random() * (GAME_CONFIG.ITEM_SPEED_MAX - GAME_CONFIG.ITEM_SPEED_MIN) + GAME_CONFIG.ITEM_SPEED_MIN,
+            items.push({
+                element: itemElement, y: -itemWidth,
+                speed: Math.random() * (C.ITEM_SPEED_MAX - C.ITEM_SPEED_MIN) + C.ITEM_SPEED_MIN,
                 type: type
-            };
-            items.push(item);
+            });
         }
-
         function updateItemPositions() {
             items = items.filter(item => {
                 item.y += item.speed;
                 item.element.style.top = `${item.y}px`;
-
-                if (item.y > gameAreaRect.height) {
-                    item.element.remove();
-                    return false;
-                }
+                if (item.y > rect.height) { item.element.remove(); return false; }
                 return true;
             });
         }
-        
-        function checkCollisions() {
-            const subRect = $playerSubmarine.getBoundingClientRect();
 
+        function checkCollisions() {
+            const subRect = $Sub.getBoundingClientRect();
             items = items.filter(item => {
                 const itemRect = item.element.getBoundingClientRect();
-                
-                // Colisión de rectángulos
                 const isColliding = (
-                    subRect.left < itemRect.right &&
-                    subRect.right > itemRect.left &&
-                    subRect.top < itemRect.bottom &&
-                    subRect.bottom > itemRect.top
+                    subRect.left < itemRect.right && subRect.right > itemRect.left &&
+                    subRect.top < itemRect.bottom && subRect.bottom > itemRect.top
                 );
-
                 if (isColliding) {
                     handleCollision(item);
                     item.element.remove();
@@ -615,36 +578,16 @@
                 return true;
             });
         }
-
         function handleCollision(item) {
             switch (item.type) {
-                case 'coin':
-                    updateScore(GAME_CONFIG.COIN_POINTS);
-                    break;
-                case 'clock':
-                    currentTime += GAME_CONFIG.TIME_GAIN;
-                    updateTimeBar();
-                    break;
-                case 'fish':
-                    currentTime -= GAME_CONFIG.TIME_LOSS;
-                    updateTimeBar();
-                    break;
+                case 'coin': updateScore(C.COIN_POINTS); break;
+                case 'clock': time += C.TIME_GAIN; break;
+                case 'fish': time -= C.TIME_LOSS; break;
             }
-            if (currentTime <= 0) {
-                gameOver();
-            }
+            updateTimeBar();
+            if (time <= 0) gameOver();
         }
-
-        // --- 11. Inicialización ---
-
-        document.addEventListener('DOMContentLoaded', () => {
-            gameAreaRect = $gameArea.getBoundingClientRect();
-            
-            setupSubmarineSelection();
-            $playButton.addEventListener('click', startGame);
-        });
-        
+        document.addEventListener('DOMContentLoaded', setupUI);
     </script>
-
 </body>
 </html>
