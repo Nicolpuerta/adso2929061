@@ -1,26 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12- Challenge-memory-game</title>
+    <title>12- Challenge memory game</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="js/jquery-3.7.1.min.js"></script>
+    <style>
+        body.jquery {
+            background-color: #1a1a2e;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+        }
+
+        header {
+            display: none;
+        }
+
+        .memory-game-container {
+            background-image: url('images/memory/fondo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 320px;
+            height: 620px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            margin: auto;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .game-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin: 5px 0 20px 0;
+            text-align: center;
+            letter-spacing: 2px;
+            color: white;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .score-panel {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .timer,
+        .moves {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            margin: 0 5px;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 10px;
+            perspective: 1000px;
+            margin: auto;
+            width: 100%;
+            max-width: 300px;
+            justify-items: center;
+        }
+
+        .card {
+            width: 85px;
+            height: 85px;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            border-radius: 50%;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .card-back {
+            background-color: #0b1a2e;
+            border: 5px solid #00c7e2;
+            box-shadow: 0 0 10px rgba(0, 199, 226, 0.8);
+            transform: rotateY(0deg);
+        }
+
+        .card-back img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+        }
+
+        .card-front {
+            background-color: transparent;
+            transform: rotateY(180deg);
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #3a82ed;
+        }
+
+        .card-inner.flip {
+            transform: rotateY(180deg);
+        }
+        
+        .board-grid.disabled-click .card {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .play-button {
+            background: linear-gradient(180deg, #3a82ed, #1e4587);
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: auto;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #1e4587;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .play-button:active {
+            box-shadow: 0 0 0 #1e4587;
+            transform: translateY(4px);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.visible {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 199, 226, 0.3);
+            border: 2px solid #00c7e2;
+            color: white;
+            max-width: 80%;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-content h3 {
+            color: #00c7e2;
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            margin: 15px 0;
+        }
+
+        .modal-content button {
+            background: #3a82ed;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
 </head>
+
 <body class="jquery">
     <nav>
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
         <header>
-            <h1>12- Challenge-memory-game </h1>
+            <h1>12- Challenge memory game </h1>
             <h2>Construye un juego de memoria usando jQuery</h2>
         </header>
         <section>
+            <div class="memory-game-container">
+                <div class="game-header">
+                    <h2 class="game-title">MEMORY GAME</h2>
+                    <div class="score-panel">
+                        <span class="timer">0 segundos</span>
+                        <span class="moves">0 movimientos</span>
+                    </div>
+                </div>
+
+                <div class="board-grid">
+                </div>
+
+                <button class="play-button">Jugar</button>
+            </div>
         </section>
     </main>
+
+    <div class="modal-overlay" id="victoryModal">
+        <div class="modal-content">
+            <h3>¡VICTORIA!</h3>
+            <p id="modal-message">Has completado el juego.</p>
+            <button id="modal-close">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            const characters = [
+                'unicornio', 'centauro', 'dinosaurio1', 'dinosaurio2', 'fenix', 'dragon'
+            ];
+            const runes = [
+                'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis'
+            ];
+            const PREVIEW_TIME = 2000;
+
+            let cards = [];
+            let flippedCards = [];
+            let matches = 0;
+            let moves = 0;
+            let timer = 0;
+            let isFlipping = false;
+            let intervalId = null;
+            let gameStarted = false;
+
+            function shuffle(array) {
+                let counter = array.length, temp, index;
+                while (counter > 0) {
+                    index = Math.floor(Math.random() * counter);
+                    counter--;
+                    temp = array[counter];
+                    array[counter] = array[index];
+                    array[index] = temp;
+                }
+                return array;
+            }
+
+            function initGame(startGameAfterInit = false) {
+                cards = characters.concat(characters);
+                cards = shuffle(cards);
+
+                let cardRunes = runes.concat(runes);
+                cardRunes = shuffle(cardRunes);
+
+                $('.board-grid').empty().removeClass('disabled-click');
+                matches = 0;
+                moves = 0;
+                timer = 0;
+                flippedCards = [];
+                isFlipping = false;
+                gameStarted = false;
+
+                $('.moves').text('0 movimientos');
+                $('.timer').text('0 segundos');
+
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+
+                $('#victoryModal').removeClass('visible').hide();
+
+                $.each(cards, function (index, charName) {
+                    const runeName = cardRunes[index];
+
+                    const cardHTML = `
+                        <div class="card" data-card="${charName}">
+                            <div class="card-inner">
+                                <div class="card-back card-face">
+                                    <img src="images/memory/${runeName}.png" alt="Runa">
+                                </div>
+                                <div class="card-front card-face">
+                                    <img src="images/memory/${charName}.png" alt="${charName}">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    $('.board-grid').append(cardHTML);
+                });
+                
+                if (startGameAfterInit) {
+                    startPreviewAndGame();
+                } else {
+                    $('.play-button').text('Jugar');
+                }
+            }
+            
+            function startPreviewAndGame() {
+                $('.board-grid').addClass('disabled-click');
+                $('.play-button').text('Memoriza');
+                
+                $('.card-inner').addClass('flip');
+                
+                setTimeout(function() {
+                    $('.card-inner').removeClass('flip');
+                    
+                    setTimeout(function() {
+                        $('.board-grid').removeClass('disabled-click');
+                        $('.play-button').text('Reiniciar');
+                        gameStarted = true;
+                        startTimer();
+                    }, 350); 
+                    
+                }, PREVIEW_TIME);
+            }
+
+            function startTimer() {
+                if (!intervalId) {
+                    intervalId = setInterval(function () {
+                        timer++;
+                        $('.timer').text(timer + ' segundos');
+                    }, 1000);
+                }
+            }
+
+            function showVictoryModal() {
+                const message = `¡Lo lograste en <strong>${timer} segundos</strong> y <strong>${moves} movimientos</strong>!`;
+                $('#modal-message').html(message);
+                $('#victoryModal').css('display', 'flex').addClass('visible');
+            }
+
+            $('.board-grid').on('click', '.card', function () {
+                const $card = $(this);
+                const $cardInner = $card.find('.card-inner');
+
+                if (!gameStarted || $card.hasClass('matched') || $cardInner.hasClass('flip') || isFlipping || flippedCards.length === 2) {
+                    return;
+                }
+
+                $cardInner.addClass('flip');
+                flippedCards.push($card);
+
+                if (flippedCards.length === 2) {
+                    isFlipping = true;
+                    moves++;
+                    $('.moves').text(moves + ' movimientos');
+                    
+                    setTimeout(checkMatch, 450); 
+                }
+            });
+
+
+            function checkMatch() {
+                const [card1, card2] = flippedCards;
+                const char1 = card1.data('card');
+                const char2 = card2.data('card');
+                
+                flippedCards = []; 
+
+                if (char1 === char2) {
+                    card1.addClass('matched');
+                    card2.addClass('matched');
+                    matches++;
+                    isFlipping = false;
+
+                    if (matches === characters.length) {
+                        clearInterval(intervalId);
+                        setTimeout(showVictoryModal, 300); 
+                    }
+                } else {
+                    setTimeout(function () {
+                        card1.find('.card-inner').removeClass('flip');
+                        card2.find('.card-inner').removeClass('flip');
+
+                        isFlipping = false;
+                    }, 500);
+                }
+            }
+
+            $('.play-button').on('click', function () {
+                const buttonText = $(this).text();
+                if (buttonText === 'Jugar') {
+                    initGame(true);
+                } else if (buttonText === 'Reiniciar') {
+                    if (confirm('¿Estás seguro de que quieres reiniciar el juego?')) {
+                        initGame(true);
+                    }
+                }
+            });
+            
+            $('#modal-close').on('click', function() {
+                initGame(true); 
+            });
+
+            initGame(false);
+        });
+    </script>
 </body>
+
 </html>
