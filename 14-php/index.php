@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>14 - PHP </title>
      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="php">
     <nav>
@@ -15,9 +15,9 @@
     </nav>
     <main>
         <header>
-            <h1>14- PHP</h1>
+            <h1>14 - PHP</h1>
             <h2>Is a server-side scripting language primarily for web development</h2>
-            <img src="../14-php/images/logo-php.png" alt="html">
+            <img src="images/logo-php.png" alt="html">
         
         </header>
        
@@ -37,7 +37,7 @@
             <a href="04-variables.php">
                 <span>04</span>
                 Variables
-            </a>chslhcbsd
+            </a>
             <a href="05-strings.php">
                 <span>05</span>
                 Strings
