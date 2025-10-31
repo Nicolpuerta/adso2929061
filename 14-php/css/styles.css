@@ -326,12 +326,15 @@ body.php {
         }
 
         section {
-            width: 100%;
+
 
             p {
-                color: #000000;
+                color: #ffffff;
                 font-size: 1rem;
                 align-items: center;
+            }
+            li {
+                margin-left: 20px;
             }
         }
 
