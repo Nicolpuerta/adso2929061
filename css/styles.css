@@ -167,6 +167,21 @@ body {
             }
         }
 
+        .menu-wrapper {
+            display: flex;
+            justify-content: space-between;
+            /* separa los menús */
+            align-items: flex-start;
+            /* alinea arriba */
+            gap: 2rem;
+            /* espacio entre columnas */
+        }
+
+        .menu-wrapper menu {
+            flex-direction: column;
+            /* mantiene el estilo de cada menú */
+        }
+
         menu {
             align-items: center;
             display: flex;
@@ -777,7 +792,129 @@ body.php {
                 font-size: 1rem;
                 align-items: center;
             }
-            
+
+        }
+
+        h1 {
+            display: block;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            unicode-bidi: isolate;
+
+            h2 {
+                font-size: 1.4rem;
+                font-weight: 200;
+                text-align: center;
+            }
+
+        }
+    }
+}
+
+body.typescript {
+    background-color: #2D79C7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%232D79C7' cx='50' cy='0' r='50'/%3E%3Cg fill='%232b75c1' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%232a71bb' cx='50' cy='100' r='50'/%3E%3Cg fill='%23296eb5' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23276aae' cx='50' cy='200' r='50'/%3E%3Cg fill='%232666a8' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%232463a2' cx='50' cy='300' r='50'/%3E%3Cg fill='%23235f9c' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23225b97' cx='50' cy='400' r='50'/%3E%3Cg fill='%23205891' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%231f548b' cx='50' cy='500' r='50'/%3E%3Cg fill='%231e5185' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%231c4d7f' cx='50' cy='600' r='50'/%3E%3Cg fill='%231b4a7a' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%231a4674' cx='50' cy='700' r='50'/%3E%3Cg fill='%2319436e' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23183f69' cx='50' cy='800' r='50'/%3E%3Cg fill='%23163c63' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%2315395e' cx='50' cy='900' r='50'/%3E%3Cg fill='%23143558' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23133253' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+
+    main {
+        header {
+            h1 {
+                color: #ffffff;
+            }
+
+            h2 {
+                color: #ffffff;
+                font-weight: 500;
+
+            }
+        }
+
+        menu {
+            a:is(:link, :visited) {
+                color: #080808;
+                font-weight: 500;
+
+                span {
+                    background-color: #2D79C7;
+                    justify-content: center;
+                }
+            }
+        }
+
+        section {
+            width: 100%;
+
+            p {
+                color: #000000;
+                font-size: 1rem;
+                align-items: center;
+            }
+
+        }
+
+        h1 {
+            display: block;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            unicode-bidi: isolate;
+
+            h2 {
+                font-size: 1.4rem;
+                font-weight: 200;
+                text-align: center;
+            }
+
+        }
+    }
+}
+
+
+
+body.sql {
+    background-color: #103F8D;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23103F8D' cx='50' cy='0' r='50'/%3E%3Cg fill='%230f3d89' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%230e3c85' cx='50' cy='100' r='50'/%3E%3Cg fill='%230d3a81' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%230c387d' cx='50' cy='200' r='50'/%3E%3Cg fill='%230c3679' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%230b3575' cx='50' cy='300' r='50'/%3E%3Cg fill='%230a3371' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%230a316e' cx='50' cy='400' r='50'/%3E%3Cg fill='%23092f6a' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23092e66' cx='50' cy='500' r='50'/%3E%3Cg fill='%23092c62' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23082a5e' cx='50' cy='600' r='50'/%3E%3Cg fill='%2308295b' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23082757' cx='50' cy='700' r='50'/%3E%3Cg fill='%23082553' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%2308244f' cx='50' cy='800' r='50'/%3E%3Cg fill='%2307224c' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23072048' cx='50' cy='900' r='50'/%3E%3Cg fill='%23071f45' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23071D41' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+
+    main {
+        header {
+            h1 {
+                color: #ffffff;
+            }
+
+            h2 {
+                color: #ffffff;
+                font-weight: 500;
+
+            }
+        }
+
+        menu {
+            a:is(:link, :visited) {
+                color: #080808;
+                font-weight: 500;
+
+                span {
+                    background-color: #103F8D;
+                    justify-content: center;
+                }
+            }
+        }
+
+        section {
+            width: 100%;
+
+            p {
+                color: #000000;
+                font-size: 1rem;
+                align-items: center;
+            }
+
         }
 
         h1 {

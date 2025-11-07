@@ -90,7 +90,7 @@
             echo "</div>";
         
         } catch (Exception $e) {
-            echo "<p style='color: red;'>❌ Error: La combinación de fecha seleccionada no es válida (ej. 30 de febrero).</p>";
+            echo "<p style='color: red;'>❌ Error: La fecha seleccionada no es válida.</p>";
         }
     }
 
