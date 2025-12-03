@@ -5,72 +5,73 @@ $description = 'A class that cannot be instantiated, only extended from.';
 include_once 'template/header.php';
 echo '<section>';
 
-abstract class Pokeadso {
-    
-    private $DB_HOST ;
-    private $DB_NAME ;
-    private $DB_USER ;
-    private $DB_PASS ;
-
+abstract class basedatos
+{
+    private $HOST;
+    private $NAME;
+    private $USER;
+    private $PASS;
     protected $conexion;
 
-    public function __construct($DB_HOST='localhost', $DB_NAME = 'pokeadso',$DB_USER = 'root',$DB_PASS = '')
+    // Función contructor
+    public function __construct($HOST = 'localhost', $NAME = 'pokeadso', $USER = 'root', $PASS = '')
     {
-        $this->DB_HOST = $DB_HOST;
-        $this->DB_NAME = $DB_NAME;
-        $this->DB_USER = $DB_USER;
-        $this->DB_PASS = $DB_PASS;
+        $this->HOST = $HOST;
+        $this->NAME = $NAME;
+        $this->USER = $USER;
+        $this->PASS = $PASS;
 
         $this->conectar();
     }
 
-    protected function conectar() {
-        $dsn = 'mysql:host=' . $this->DB_HOST . ';dbname=' . $this->DB_NAME . ';charset=utf8mb4';
+    protected function conectar()
+    {
+        $dsn = 'mysql:host=' . $this->HOST . ';dbname=' . $this->NAME . ';charset=utf8mb4';
         try {
-            $this->conexion = new PDO($dsn, $this->DB_USER, $this->DB_PASS);
+            $this->conexion = new PDO($dsn, $this->USER, $this->PASS);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("❌ Error de conexión: " . $e->getMessage());
+            die(" Error de conexión: " . $e->getMessage());
         }
     }
 
-    protected function desconectar(){
+    protected function desconectar()
+    {
         $this->conexion = null;
     }
 
-    public function lisar(){
-
-    }
+    public function listar() {}
 }
 
-class Pokemone extends Pokeadso{
+class Pokemon extends basedatos
+{
 
-    public function listarPokemones() {
+    public function listarPo()
+    {
         $this->conectar();
-        
+
         try {
-            $sql = "SELECT id, name, type FROM pokemons ORDER BY id";
+            $sql = "SELECT * FROM pokemons ";
             $stmt = $this->conexion->query($sql);
             $pokemones = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            $salida="<table>
+            $tabla = "<table>
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
                             <th>Tipo</th>
                         </tr>";
 
-            foreach ($pokemones as $pk){
-                $salida.="<tr>
+            foreach ($pokemones as $pk) {
+                $tabla .= "<tr>
                             <td>{$pk['id']}</td>
                             <td>{$pk['name']}</td>
                             <td>{$pk['type']}</td>
                         </tr>";
             }
 
-            $salida.='</table>';
+            $tabla .= '</table>';
 
-            return $salida;
+            return $tabla;
         } catch (PDOException $e) {
             return '';
         } finally {
@@ -79,8 +80,8 @@ class Pokemone extends Pokeadso{
     }
 }
 
-$pokemones= new Pokemone();
-echo $pokemones->listarPokemones();
+$pokemones = new Pokemon();
+echo $pokemones->listarPo();
 
 
 

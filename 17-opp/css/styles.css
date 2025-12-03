@@ -320,13 +320,41 @@ body.opp {
             }
         }
 
-        section {
-
-
+         section {
+            width: 80%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+   
             p {
-                color: #000000;
+                color: #a0a0a0;
                 font-size: 1rem;
                 align-items: center;
+            }
+
+            table {
+                border: 1px solid rgba(92, 0, 102, 0);
+                border-collapse: collapse;
+                color: #ffffff;
+                width: 100%;
+
+                thead {
+                    th {
+                        border: 1px solid #0006;
+                        background-color: #0006;
+                        color: #fff;
+                        padding: 0.4rem;
+                    }
+                }
+
+                tbody {
+                    td{
+                        border: 1px solid #dd5ac175;
+                        background-color: rgba(0, 0, 0, 0.4);
+                        text-align: center;
+                        padding: 0.8rem 0.4rem;
+                    }
+                }
             }
 
         }
@@ -348,3 +376,4 @@ body.opp {
         }
     }
 }
+
