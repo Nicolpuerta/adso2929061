@@ -611,7 +611,11 @@ body.tailwind {
     section {
         width: 80%;
 
-        p {
+        color: #e7b4eddc;
+        color: #5eaed0dc;
+        color: #d44633ec;
+
+        p { 
             color: #000000;
             font-size: 1rem;
             align-items: center;
