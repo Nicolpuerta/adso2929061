@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('location');
             $table->text('description');
             $table->boolean('active')->default(1);
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
